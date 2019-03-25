@@ -1,14 +1,54 @@
 package ua.lviv.lgs.periodicals.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	
 	private String email;
 	private String firstName;
 	private String lastName;
-	private UserRole role;
 	private String password;
+	private String passwordConfirm;
+	
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
 
 	public User() {
+	}
+
+	public User(User user) {
+		this.id = user.id;
+		this.email = user.email;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.role = user.role;
+		this.password = user.password;
+		
+	}
+	
+	
+	public User(Integer id, String email, String firstName, String lastName, String password, String passwordConfirm,
+			UserRole role) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
+		this.role = role;
 	}
 
 	public User(String email, String firstName, String lastName, UserRole role, String password) {
@@ -76,6 +116,14 @@ public class User {
 		this.password = password;
 	}
 
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,6 +133,7 @@ public class User {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -123,6 +172,11 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (passwordConfirm == null) {
+			if (other.passwordConfirm != null)
+				return false;
+		} else if (!passwordConfirm.equals(other.passwordConfirm))
+			return false;
 		if (role != other.role)
 			return false;
 		return true;
@@ -130,7 +184,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", role="
-				+ role + ", password=" + password + "]";
+		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", password=" + password + ", passwordConfirm=" + passwordConfirm + ", role=" + role + "]";
 	}
+
+	
+	
 }
