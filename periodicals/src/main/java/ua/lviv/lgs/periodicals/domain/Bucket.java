@@ -11,24 +11,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table(name="bucket")
+@Table(name = "bucket")
 public class Bucket {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id", referencedColumnName="id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name="product_id", referencedColumnName="id")
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
 	private Periodical periodical;
 	
-	@Column(name="purchase_date")
+	@Column(name = "purchase_date")
 	private Date purchaseDate;
 
 	public Bucket() {
@@ -129,7 +127,5 @@ public class Bucket {
 		return "Bucket [id=" + id + ", user=" + user + ", periodical=" + periodical + ", purchaseDate=" + purchaseDate
 				+ "]";
 	}
-
-	
 
 }

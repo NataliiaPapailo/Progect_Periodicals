@@ -1,6 +1,5 @@
 package ua.lviv.lgs.periodicals.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,18 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	private String email;
 	private String firstName;
 	private String lastName;
 	private String password;
 	private String passwordConfirm;
-	
+
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
 
@@ -33,30 +32,16 @@ public class User {
 		this.email = user.email;
 		this.firstName = user.firstName;
 		this.lastName = user.lastName;
-		this.role = user.role;
 		this.password = user.password;
-		
-	}
-	
-	
-	public User(Integer id, String email, String firstName, String lastName, String password, String passwordConfirm,
-			UserRole role) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.password = password;
-		this.passwordConfirm = passwordConfirm;
-		this.role = role;
+		this.role = user.role;
 	}
 
 	public User(String email, String firstName, String lastName, UserRole role, String password) {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = role;
 		this.password = password;
+		this.role = role;
 	}
 
 	public User(Integer id, String email, String firstName, String lastName, UserRole role, String password) {
@@ -64,8 +49,8 @@ public class User {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = role;
 		this.password = password;
+		this.role = role;
 	}
 
 	public Integer getId() {
@@ -100,6 +85,14 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public UserRole getRole() {
 		return role;
 	}
@@ -108,12 +101,8 @@ public class User {
 		this.role = role;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public String getUserName() {
+		return email;
 	}
 
 	public String getPasswordConfirm() {
@@ -133,7 +122,6 @@ public class User {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -172,11 +160,6 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (passwordConfirm == null) {
-			if (other.passwordConfirm != null)
-				return false;
-		} else if (!passwordConfirm.equals(other.passwordConfirm))
-			return false;
 		if (role != other.role)
 			return false;
 		return true;
@@ -185,9 +168,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", password=" + password + ", passwordConfirm=" + passwordConfirm + ", role=" + role + "]";
+				+ ", password=" + password + ", role=" + role + "]";
 	}
-
-	
-	
 }

@@ -8,15 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="periodical")
+@Table(name = "periodical")
 public class Periodical {
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
 	@Column
 	private String name;
+	
 	@Column
 	private String description;
+	
 	@Column
 	private Double price;
 
