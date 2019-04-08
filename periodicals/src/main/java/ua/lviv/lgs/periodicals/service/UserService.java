@@ -1,7 +1,6 @@
 package ua.lviv.lgs.periodicals.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +22,10 @@ public class UserService{
         user.setPassword(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
         user.setRole(UserRole.ROLE_USER);
         userRepository.save(user);
+    }
+    
+    public User findByEmail(String email) {
+    	return userRepository.findByEmail(email).get();
     }
 
 }

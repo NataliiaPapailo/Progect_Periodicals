@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ua.lviv.lgs.periodicals.dao.UserRepository;
-import ua.lviv.lgs.periodicals.domain.Periodical;
+
 import ua.lviv.lgs.periodicals.domain.User;
 import ua.lviv.lgs.periodicals.service.PeriodicalsService;
 import ua.lviv.lgs.periodicals.service.UserService;
@@ -62,7 +61,7 @@ public class UserController {
 	}
     
     @RequestMapping(value ="/create-periodical", method = RequestMethod.GET)
-    public ModelAndView createPeriodical() {
-        return new ModelAndView("createPeriodical", "periodical", new Periodical());
+    public String createPeriodical() {
+    	return "createPeriodical";
     }  
 }
